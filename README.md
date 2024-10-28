@@ -81,7 +81,8 @@ The SDK raises exceptions for various error scenarios:
 3. Create a `.env` file in the root directory and add your API key:
 
    ```plaintext
-   LOTR_API_KEY=api_ke
+   LOTR_API_KEY=api_key
+   ```
 
 
 4. Run:
