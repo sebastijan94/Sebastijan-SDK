@@ -1,4 +1,5 @@
 import requests
+from .models import Movie
 
 class MovieService:
     def __init__(self, api_key: str, base_url: str):
@@ -10,4 +11,4 @@ class MovieService:
         headers = {"Authorization": f"Bearer {self.api_key}"}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        return response.json()
+        return Movie.from_json(response.json()["docs"][0])

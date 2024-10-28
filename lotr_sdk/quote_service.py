@@ -1,4 +1,5 @@
 import requests
+from .models import Quote
 
 class QuoteService:
     def __init__(self, api_key: str, base_url: str):
@@ -10,4 +11,4 @@ class QuoteService:
         headers = {"Authorization": f"Bearer {self.api_key}"}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        return response.json()
+        return Quote.from_json(response.json()["docs"][0])
