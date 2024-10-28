@@ -18,9 +18,9 @@ class Client:
         """Fetch all movies with optional pagination."""
         return self.movie_service.get_all_movies(limit, page, offset)
     
-    def get_movie_quotes(self, movie_id: str):
-        """Fetch all quotes for a specific movie by its ID."""
-        return self.movie_service.get_movie_quotes(movie_id)
+    def get_movie_quotes(self, movie_id: str, limit: int = 100, page: int = None, offset: int = None):
+        """Fetch all quotes for a specific movie by its ID with optional pagination."""
+        return self.movie_service.get_movie_quotes(movie_id, limit, page, offset)
 
     # Quote-related methods
     def get_quote_by_id(self, quote_id: str):
@@ -30,3 +30,16 @@ class Client:
     def get_all_quotes(self, limit: int = 100, page: int = None, offset: int = None):
         """Fetch all quotes with optional pagination."""
         return self.quote_service.get_all_quotes(limit, page, offset)
+    
+    # Combined methods
+    def get_movie_with_quotes(self, movie_id: str, limit: int = 100, page: int = None, offset: int = None):
+        """Fetch a movie by its ID along with its quotes with optional pagination."""
+        movie = self.get_movie_by_id(movie_id)
+        quotes = self.get_movie_quotes(movie_id, limit, page, offset)
+        return {
+            "movie": movie,
+            "quotes": quotes
+        }
+
+
+    

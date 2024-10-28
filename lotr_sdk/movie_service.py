@@ -32,11 +32,16 @@ class MovieService:
         except requests.exceptions.HTTPError:
             handle_http_error(response)
     
-    def get_movie_quotes(self, movie_id: str):
+    def get_movie_quotes(self, movie_id: str, limit: int = 100, page: int = None, offset: int = None):
         url = f"{self.base_url}/movie/{movie_id}/quote"
         headers = {"Authorization": f"Bearer {self.api_key}"}
+        params = {"limit": limit}
+        if page:
+            params["page"] = page
+        if offset:
+            params["offset"] = offset
         try:
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, params=params)
             response.raise_for_status()
             return [Quote.from_json(quote) for quote in response.json()["docs"]]
         except requests.exceptions.HTTPError:
