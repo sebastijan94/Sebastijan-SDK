@@ -14,23 +14,10 @@ A Python SDK for accessing the Lord of the Rings API, allowing developers to eas
 
 0. Ensure you are using Python version >= 3.9
 
-1. Clone the repository:
+1. Install the SDK:
 
    ```bash
-   git clone https://github.com/sebastijan94/Sebastijan-SDK.git
-   cd Sebastijan-SDK
-   ```
-
-2. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Create a `.env` file in the root directory and add your API key (used for tests):
-
-   ```plaintext
-   LOTR_API_KEY=api_key
+   pip install git+https://github.com/sebastijan94/Sebastijan-SDK.git
    ```
 
 ## Usage
@@ -76,9 +63,28 @@ The SDK raises exceptions for various error scenarios:
 
 ### Testing
 
-To run the tests, make sure you have `pytest` installed and then run:
+0. Ensure you are using Python version >= 3.9
 
-```bash
-pytest test_sdk.py
-```
+1. Clone the repository:
 
+   ```bash
+   git clone https://github.com/sebastijan94/Sebastijan-SDK.git
+   cd Sebastijan-SDK
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file in the root directory and add your API key:
+
+   ```plaintext
+   LOTR_API_KEY=api_ke
+
+
+4. Run:
+   ```bash
+   pytest tests/test_sdk.py
+   ```
