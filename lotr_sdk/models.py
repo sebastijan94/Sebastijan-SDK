@@ -1,19 +1,29 @@
+from dataclasses import dataclass
+
+@dataclass
 class Movie:
-    def __init__(self, _id, name, runtime_in_minutes, budget_in_millions, box_office_revenue_in_millions,
-                 academy_award_nominations, academy_award_wins, rotten_tomatoes_score):
-        self.id = _id
-        self.name = name
-        self.runtime_in_minutes = runtime_in_minutes
-        self.budget_in_millions = budget_in_millions
-        self.box_office_revenue_in_millions = box_office_revenue_in_millions
-        self.academy_award_nominations = academy_award_nominations
-        self.academy_award_wins = academy_award_wins
-        self.rotten_tomatoes_score = rotten_tomatoes_score
+    """Represents a movie with its details."""
+    id: str
+    name: str
+    runtime_in_minutes: int
+    budget_in_millions: int
+    box_office_revenue_in_millions: int
+    academy_award_nominations: int
+    academy_award_wins: int
+    rotten_tomatoes_score: int
 
     @classmethod
-    def from_json(cls, data):
+    def from_json(cls, data: dict) -> 'Movie':
+        """Create a Movie instance from a JSON-like dictionary.
+
+        Args:
+            data (dict): A dictionary containing movie data.
+
+        Returns:
+            Movie: An instance of the Movie class.
+        """
         return cls(
-            _id=data.get("_id"),
+            id=data.get("_id"),
             name=data.get("name"),
             runtime_in_minutes=data.get("runtimeInMinutes"),
             budget_in_millions=data.get("budgetInMillions"),
@@ -24,17 +34,26 @@ class Movie:
         )
 
 
+@dataclass
 class Quote:
-    def __init__(self, _id, dialog, movie, character):
-        self.id = _id
-        self.dialog = dialog
-        self.movie = movie
-        self.character = character
+    """Represents a quote from a movie."""
+    id: str
+    dialog: str
+    movie: str  # The ID of the movie the quote is from
+    character: str 
 
     @classmethod
-    def from_json(cls, data):
+    def from_json(cls, data: dict) -> 'Quote':
+        """Create a Quote instance from a JSON-like dictionary.
+
+        Args:
+            data (dict): A dictionary containing quote data.
+
+        Returns:
+            Quote: An instance of the Quote class.
+        """
         return cls(
-            _id=data.get("_id"),
+            id=data.get("_id"),
             dialog=data.get("dialog"),
             movie=data.get("movie"),
             character=data.get("character")
