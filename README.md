@@ -17,7 +17,7 @@ A Python SDK for accessing the Lord of the Rings API, allowing developers to eas
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/sebastijan94/The-Lord-of-the-Rings-SDK.git
+   git clone https://github.com/sebastijan94/Sebastijan-SDK.git
    cd The-Lord-of-the-Rings-SDK
    ```
 
