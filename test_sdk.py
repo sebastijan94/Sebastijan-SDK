@@ -52,9 +52,27 @@ def test_get_movie_with_quotes():
     with pytest.raises((NotFoundError, SDKError)):
         client.get_movie_with_quotes("invalid_id")
 
+# Test invalid API key
 def test_invalid_api_key():
     client_invalid = Client(api_key=INVALID_API_KEY)
 
     with pytest.raises(AuthenticationError):
         client_invalid.get_movie_by_id("5cd95395de30eff6ebccde5b")
 
+# Validation tests
+def test_validation_offset():
+    # Valid input should not raise an error
+    client.get_all_movies(offset=0)  # This should pass
+
+def test_validation_limit():
+    with pytest.raises(ValueError, match="limit must be a positive integer."):
+        client.get_all_movies(limit=-1)
+
+def test_validation_page():
+    with pytest.raises(ValueError, match="page must be a positive integer."):
+        client.get_all_movies(page=0)
+
+
+def test_validation_non_negative_offset():
+    with pytest.raises(ValueError, match="offset must be a non-negative integer."):
+        client.get_all_movies(offset=-1)

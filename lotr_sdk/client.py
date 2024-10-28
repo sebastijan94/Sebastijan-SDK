@@ -1,6 +1,7 @@
 from .movie_service import MovieService
 from .quote_service import QuoteService
 from .models import Movie, Quote
+from .validators import validate_positive_integer, validate_non_negative_integer
 
 class Client:
     """Client for accessing The Lord of the Rings API.
@@ -43,6 +44,10 @@ class Client:
         Returns:
             list[Movie]: A list of Movie instances.
         """
+        validate_positive_integer(limit, "limit")
+        validate_positive_integer(page, "page")
+        validate_non_negative_integer(offset, "offset")
+        
         return self.movie_service.get_all_movies(limit, page, offset)
     
     def get_movie_quotes(self, movie_id: str, limit: int = 100, page: int = None, offset: int = None) -> list[Quote]:
@@ -57,6 +62,10 @@ class Client:
         Returns:
             list[Quote]: A list of Quote instances.
         """
+        validate_positive_integer(limit, "limit")
+        validate_positive_integer(page, "page")
+        validate_non_negative_integer(offset, "offset")
+        
         return self.movie_service.get_movie_quotes(movie_id, limit, page, offset)
 
     # Quote-related methods
@@ -82,6 +91,10 @@ class Client:
         Returns:
             list[Quote]: A list of Quote instances.
         """
+        validate_positive_integer(limit, "limit")
+        validate_positive_integer(page, "page")
+        validate_non_negative_integer(offset, "offset")
+        
         return self.quote_service.get_all_quotes(limit, page, offset)
     
     # Combined methods
@@ -103,4 +116,3 @@ class Client:
             "movie": movie,
             "quotes": quotes
         }
-    
